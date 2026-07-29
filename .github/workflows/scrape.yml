@@ -1,0 +1,43 @@
+name: Scrape Hackathons
+
+on:
+  schedule:
+    # Runs every 48 hours (every 2 days) at 03:00 UTC (~08:30 IST)
+    - cron: "0 3 */2 * *"
+  workflow_dispatch: {}   # Allows manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r scraper/requirements.txt
+
+      - name: Run scraper
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scraper/scrape.py
+
+      - name: Copy data into frontend public folder
+        run: |
+          mkdir -p frontend/public/data
+          cp data/hackathons.json frontend/public/data/hackathons.json
+
+      - name: Commit & push updated data
+        run: |
+          git config user.name "hackathon-scraper-bot"
+          git config user.email "actions@github.com"
+          git add data/hackathons.json frontend/public/data/hackathons.json
+          git diff --staged --quiet || git commit -m "chore: auto-update hackathon data [skip ci]"
+          git push
