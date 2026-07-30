@@ -19,7 +19,7 @@ from google.genai import types
 from fetch_page import chunk_text
 
 PRIMARY_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
-FALLBACK_MODELS = [PRIMARY_MODEL, "gemini-2.0-flash", "gemini-1.5-flash"]
+FALLBACK_MODELS = [PRIMARY_MODEL,  "gemini-3.5-flash-lite","gemini-3.6-flash"]
 # Deduplicate while preserving order
 MODELS_TO_TRY = list(dict.fromkeys(FALLBACK_MODELS))
 
@@ -169,6 +169,6 @@ def extract_hackathons(page_text: str, source_url: str) -> List[Dict[str, Any]]:
 
         # Respectful request pacing between chunks
         if idx < len(chunks):
-            time.sleep(2)
+            time.sleep(90)
 
     return all_extracted
