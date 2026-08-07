@@ -33,11 +33,6 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Ensure latest data is bundled
-        run: |
-          mkdir -p frontend/public/data
-          cp data/hackathons.json frontend/public/data/hackathons.json
-
       - name: Build
         working-directory: frontend
         run: npm run build
