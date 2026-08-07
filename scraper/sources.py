@@ -24,6 +24,5 @@ SOURCE_URLS = [
     "https://unstop.com/api/public/opportunity/search-result?opportunity=hackathons&page=1&per_page=50&oppstatus=open&sortBy=&orderBy=&filter_condition=&sort=prize&dir=desc&sort=prize&dir=desc&undefined=true",
     "https://unstop.com/api/public/opportunity/search-result?opportunity=hackathons&page=2&per_page=50&oppstatus=open&sortBy=&orderBy=&filter_condition=&sort=prize&dir=desc&sort=prize&dir=desc&undefined=true",
     "https://devpost.com/api/hackathons?challenge_type%5B%5D=online&status%5B%5D=open&per_page=50",
-    "https://www.knowafest.com/explore/category/Hackathons_in_Kerala?page=1",
     "https://topkerala.in/events"
 ]
