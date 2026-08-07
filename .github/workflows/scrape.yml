@@ -29,15 +29,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scraper/scrape.py
 
-      - name: Copy data into frontend public folder
-        run: |
-          mkdir -p frontend/public/data
-          cp data/hackathons.json frontend/public/data/hackathons.json
-
       - name: Commit & push updated data
         run: |
           git config user.name "hackathon-scraper-bot"
           git config user.email "actions@github.com"
-          git add data/hackathons.json frontend/public/data/hackathons.json
+          git add frontend/public/data/hackathons.json
           git diff --staged --quiet || git commit -m "chore: auto-update hackathon data [skip ci]"
           git push
