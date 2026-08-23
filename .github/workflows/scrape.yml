@@ -34,5 +34,5 @@ jobs:
           git config user.name "hackathon-scraper-bot"
           git config user.email "actions@github.com"
           git add frontend/public/data/hackathons.json
-          git diff --staged --quiet || git commit -m "chore: auto-update hackathon data [skip ci]"
+          git diff --staged --quiet || git commit -m "chore: auto-update hackathon data "
           git push
