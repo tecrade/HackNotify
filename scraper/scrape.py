@@ -72,9 +72,9 @@ def load_existing() -> list[dict]:
 
 def main():
     print(f"Scraping {len(SOURCE_URLS)} source(s)...")
-    existing = load_existing()
-    by_key = {dedupe_key(h): h for h in existing}
-
+    #existing = load_existing()
+    #by_key = {dedupe_key(h): h for h in existing}
+    by_key = {}
     errors = []
     for i, url in enumerate(SOURCE_URLS, 1):
         print(f"[{i}/{len(SOURCE_URLS)}] {url}")
